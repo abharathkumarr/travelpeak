@@ -194,7 +194,6 @@ This is an academic project, but suggestions and improvements are welcome. Pleas
 
 For any questions or support regarding this project:
 - **Email**: pingmebharathkumar@gmail.com
-- **Phone**: +1 669-288-4608
 - **Location**: San Jose, California, US
 
 ---
