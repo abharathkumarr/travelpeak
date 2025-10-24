@@ -1,0 +1,1117 @@
+/* TravelPeak - Clean Travel Agency Website with Parallax Effects */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Enhanced Background with Parallax Travel Theme */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.08) 0%, 
+        rgba(255, 255, 255, 0.95) 15%, 
+        rgba(135, 206, 235, 0.1) 30%,
+        rgba(255, 255, 255, 0.9) 45%,
+        rgba(173, 216, 230, 0.12) 60%,
+        rgba(255, 255, 255, 0.95) 75%,
+        rgba(52, 152, 219, 0.08) 100%);
+    min-height: 100vh;
+}
+
+/* Parallax Container Class */
+.parallax-container {
+    position: relative;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Different parallax backgrounds for various sections */
+.parallax-mountains {
+    background-image: linear-gradient(135deg, rgba(44, 62, 80, 0.7) 0%, rgba(52, 152, 219, 0.7) 100%),
+                      url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+}
+
+.parallax-beach {
+    background-image: linear-gradient(135deg, rgba(52, 152, 219, 0.7) 0%, rgba(46, 204, 113, 0.7) 100%),
+                      url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+}
+
+.parallax-city {
+    background-image: linear-gradient(135deg, rgba(155, 89, 182, 0.7) 0%, rgba(52, 152, 219, 0.7) 100%),
+                      url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+}
+
+.parallax-adventure {
+    background-image: linear-gradient(135deg, rgba(231, 76, 60, 0.7) 0%, rgba(243, 156, 18, 0.7) 100%),
+                      url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+}
+
+.parallax-travel {
+    background-image: linear-gradient(135deg, rgba(52, 152, 219, 0.8) 0%, rgba(44, 62, 80, 0.8) 100%),
+                      url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+}
+
+.parallax-sunset {
+    background-image: linear-gradient(135deg, rgba(243, 156, 18, 0.7) 0%, rgba(231, 76, 60, 0.7) 100%),
+                      url('https://images.unsplash.com/photo-1504883265861-4b3e8a264300?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+}
+
+/* Subtle floating elements - much lighter */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 20%, rgba(52, 152, 219, 0.05) 2px, transparent 2px),
+        radial-gradient(circle at 80% 80%, rgba(243, 156, 18, 0.05) 1px, transparent 1px);
+    background-size: 100px 100px, 150px 150px;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Simple travel decorations - no heavy animations */
+.travel-decoration {
+    position: absolute;
+    font-size: 1.5rem;
+    color: rgba(52, 152, 219, 0.15);
+    pointer-events: none;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+.travel-decoration:nth-child(1) { top: 10%; left: 5%; }
+.travel-decoration:nth-child(2) { top: 20%; right: 10%; }
+.travel-decoration:nth-child(3) { top: 60%; left: 8%; }
+.travel-decoration:nth-child(4) { top: 80%; right: 5%; }
+
+/* Clean Header and Navigation */
+header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Simple logo with subtle travel icon */
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    position: relative;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    transition: color 0.3s ease;
+}
+
+.logo::before {
+    content: '✈️';
+    position: absolute;
+    left: -2.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+}
+
+.logo:hover {
+    color: #f39c12;
+}
+
+/* Clean navigation */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.7rem 1.2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+nav a:hover, nav a.active {
+    background-color: #f39c12;
+    transform: translateY(-2px);
+}
+
+/* Special styling for login button */
+nav a.login-btn {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    border: 2px solid transparent;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+nav a.login-btn:hover {
+    background: linear-gradient(135deg, #c0392b, #a93226);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Enhanced Hero Section with Parallax */
+.hero {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.7) 0%, rgba(44, 62, 80, 0.8) 100%),
+                url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    padding: 6rem 0;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+/* Parallax Content Overlay */
+.parallax-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.parallax-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+
+.parallax-content p {
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: white;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* Simple CTA Button */
+.cta-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #f39c12, #e74c3c);
+    color: white;
+    padding: 1.2rem 2.5rem;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(243, 156, 18, 0.4);
+}
+
+/* Main Content */
+main {
+    padding: 4rem 0;
+    position: relative;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+/* Enhanced Content Sections with Creative Travel Background Images */
+.content-section {
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.12) 0%, 
+        rgba(255, 255, 255, 0.92) 20%, 
+        rgba(135, 206, 235, 0.15) 40%,
+        rgba(255, 255, 255, 0.88) 60%,
+        rgba(173, 216, 230, 0.18) 80%,
+        rgba(255, 255, 255, 0.92) 100%),
+        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    margin: 2rem 0;
+    padding: 3rem 2rem;
+    border-radius: 15px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(52, 152, 219, 0.15);
+    border: 1px solid rgba(52, 152, 219, 0.1);
+}
+
+/* Creative overlay patterns for all sections */
+.content-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(52, 152, 219, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(243, 156, 18, 0.05) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.content-section > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Specific travel-themed backgrounds for different sections */
+.content-section.beach-theme {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(46, 204, 113, 0.15) 100%), 
+                url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.content-section.mountain-theme {
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.15) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(52, 152, 219, 0.15) 100%), 
+                url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.content-section.city-theme {
+    background: linear-gradient(135deg, rgba(155, 89, 182, 0.15) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(52, 152, 219, 0.15) 100%), 
+                url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.content-section.adventure-theme {
+    background: linear-gradient(135deg, rgba(231, 76, 60, 0.15) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(243, 156, 18, 0.15) 100%), 
+                url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.content-section.travel-theme {
+    background: linear-gradient(135deg, rgba(52, 152, 219, 0.15) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(44, 62, 80, 0.15) 100%), 
+                url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.content-section.luxury-theme {
+    background: linear-gradient(135deg, rgba(243, 156, 18, 0.15) 0%, rgba(255, 255, 255, 0.85) 50%, rgba(231, 76, 60, 0.15) 100%), 
+                url('https://images.unsplash.com/photo-1571896349842-33c89424de2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80');
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: overlay;
+}
+
+.content-section h2 {
+    color: #2c3e50;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.content-section h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #f39c12);
+    margin: 1rem auto;
+    border-radius: 2px;
+}
+
+.content-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 1.5rem;
+    text-align: justify;
+}
+
+/* Clean Services Grid with Travel Images */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.service-card {
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.08) 0%, 
+        rgba(255, 255, 255, 0.85) 50%, 
+        rgba(135, 206, 235, 0.12) 100%);
+    padding: 0;
+    border-radius: 12px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
+    border: 1px solid rgba(52, 152, 219, 0.2);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.service-card::before {
+    content: '';
+    display: block;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Different travel images for different cards */
+.service-card:nth-child(1)::before {
+    background-image: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+}
+
+.service-card:nth-child(2)::before {
+    background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+}
+
+.service-card:nth-child(3)::before {
+    background-image: url('https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+}
+
+.service-card:nth-child(4)::before {
+    background-image: url('https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+}
+
+.service-card:nth-child(5)::before {
+    background-image: url('https://images.unsplash.com/photo-1480796927426-f609979314bd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+}
+
+.service-card:nth-child(6)::before {
+    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+}
+
+.service-card > * {
+    padding: 0 2rem 2rem 2rem;
+}
+
+.service-card h3 {
+    padding-top: 1.5rem;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    border-color: rgba(52, 152, 219, 0.3);
+}
+
+.service-card h3 {
+    color: #2c3e50;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+}
+
+.service-card .price {
+    color: #f39c12;
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.service-link {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.service-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+    color: white;
+}
+
+/* Clean News Articles */
+.news-article {
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.08) 0%, 
+        rgba(255, 255, 255, 0.88) 50%, 
+        rgba(135, 206, 235, 0.12) 100%);
+    margin: 2rem 0;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.15);
+    border-left: 4px solid #3498db;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.news-article:hover {
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.news-article h3 {
+    color: #2c3e50;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.news-date {
+    color: #7f8c8d;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-style: italic;
+}
+
+/* Clean Contact Information */
+.contact-info {
+    background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+    color: white;
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.contact-card {
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.15) 0%, 
+        rgba(255, 255, 255, 0.85) 50%, 
+        rgba(135, 206, 235, 0.18) 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+    box-shadow: 0 8px 25px rgba(52, 152, 219, 0.2);
+}
+
+.contact-card h3 {
+    color: #f39c12;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Clean Footer */
+footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    text-align: center;
+    padding: 3rem 0;
+    margin-top: 4rem;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+    color: #f39c12;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+}
+
+.footer-section a {
+    color: #bdc3c7;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #f39c12;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(52, 152, 219, 0.2);
+    padding-top: 2rem;
+    color: #95a5a6;
+}
+
+/* Responsive Design with Parallax Adjustments */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    nav ul {
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+    
+    .content-section {
+        padding: 2rem 1rem;
+    }
+    
+    .content-section h2 {
+        font-size: 2rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Disable parallax on mobile for better performance */
+    .parallax-container,
+    .hero,
+    body {
+        background-attachment: scroll !important;
+    }
+    
+    .parallax-container {
+        min-height: 300px;
+    }
+    
+    .parallax-content h2 {
+        font-size: 2rem;
+    }
+    
+    .parallax-content p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero {
+        padding: 4rem 0;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+    
+    .parallax-container {
+        min-height: 250px;
+    }
+    
+    .parallax-content {
+        padding: 2rem 1rem;
+    }
+    
+    .parallax-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .parallax-content p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Utility Classes */
+.text-center {
+    text-align: center;
+}
+
+.mt-4 {
+    margin-top: 2rem;
+}
+
+.mb-4 {
+    margin-bottom: 2rem;
+}
+
+.highlight {
+    color: #f39c12;
+    font-weight: bold;
+}
+
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-in forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Simple section decorations - no heavy animations */
+.section-decoration {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.2rem;
+    opacity: 0.3;
+    color: #3498db;
+}
+
+/* EPIC TRAVEL SHOWCASE - The Most Creative First Section */
+.epic-travel-showcase {
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.1) 0%, 
+        rgba(255, 255, 255, 0.9) 20%, 
+        rgba(243, 156, 18, 0.1) 40%,
+        rgba(255, 255, 255, 0.9) 60%,
+        rgba(46, 204, 113, 0.1) 80%,
+        rgba(255, 255, 255, 0.9) 100%),
+        url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    margin: 4rem 0;
+    padding: 4rem 2rem;
+    border-radius: 25px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.epic-travel-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(52, 152, 219, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(243, 156, 18, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(46, 204, 113, 0.05) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.showcase-grid {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.showcase-main h2 {
+    font-size: 3rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #2c3e50, #3498db, #f39c12);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+}
+
+.floating-badge {
+    background: linear-gradient(45deg, #f39c12, #e74c3c);
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: inline-block;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+    animation: floatBadge 3s ease-in-out infinite;
+}
+
+@keyframes floatBadge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.feature-highlights {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.12) 0%, 
+        rgba(255, 255, 255, 0.85) 50%, 
+        rgba(135, 206, 235, 0.15) 100%);
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    transition: transform 0.3s ease;
+    border: 1px solid rgba(52, 152, 219, 0.25);
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.feature-item h4 {
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.feature-item p {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Interactive Image Gallery */
+.showcase-gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 1fr 1fr;
+    gap: 1rem;
+    height: 500px;
+}
+
+.gallery-item {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.gallery-item.main-image {
+    grid-row: span 2;
+}
+
+.gallery-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+    color: white;
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .image-overlay {
+    transform: translateY(0);
+}
+
+.image-overlay span {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.price-tag {
+    background: #f39c12;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+/* Floating Travel Stats */
+.travel-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, 
+        rgba(52, 152, 219, 0.15) 0%, 
+        rgba(255, 255, 255, 0.88) 50%, 
+        rgba(135, 206, 235, 0.18) 100%);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 10px 30px rgba(52, 152, 219, 0.2);
+    border: 1px solid rgba(52, 152, 219, 0.2);
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #3498db, #f39c12);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Mobile Responsive for Epic Showcase */
+@media (max-width: 768px) {
+    .showcase-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .feature-highlights {
+        grid-template-columns: 1fr;
+    }
+    
+    .showcase-gallery {
+        height: 400px;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, 1fr);
+    }
+    
+    .gallery-item.main-image {
+        grid-row: span 1;
+    }
+    
+    .travel-stats {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .showcase-main h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Travel Summary Parallax Section */
+.travel-summary-parallax {
+    background: linear-gradient(135deg, rgba(255, 182, 193, 0.8) 0%, rgba(255, 105, 180, 0.6) 100%),
+                url('https://images.unsplash.com/photo-1522383225653-ed111181a951?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+    color: white;
+}
+
+.travel-summary-parallax h2 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: white;
+}
+
+.travel-summary-parallax p {
+    font-size: 1.3rem;
+    line-height: 1.8;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Mobile responsive for travel summary */
+@media (max-width: 768px) {
+    .travel-summary-parallax {
+        background-attachment: scroll;
+    }
+    
+    .travel-summary-parallax h2 {
+        font-size: 2rem;
+    }
+    
+    .travel-summary-parallax p {
+        font-size: 1.1rem;
+    }
+}
+
+/* Customer Reviews with Parallax */
+.customer-reviews-parallax {
+    background: linear-gradient(135deg, rgba(44, 62, 80, 0.8) 0%, rgba(52, 152, 219, 0.8) 100%),
+                url('https://images.unsplash.com/photo-1488646953014-85cb44e25828?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+    color: white;
+}
+
+.customer-reviews-parallax h2 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    color: white;
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.review-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+    color: #333;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+}
+
+.place-image {
+    height: 200px;
+    overflow: hidden;
+}
+
+.place-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.review-card:hover .place-image img {
+    transform: scale(1.05);
+}
+
+.review-content {
+    padding: 1.5rem;
+}
+
+.review-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    color: #555;
+    font-style: italic;
+}
+
+.review-content h4 {
+    color: #3498db;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Mobile responsive for reviews */
+@media (max-width: 768px) {
+    .customer-reviews-parallax {
+        background-attachment: scroll;
+    }
+    
+    .customer-reviews-parallax h2 {
+        font-size: 2rem;
+    }
+    
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
